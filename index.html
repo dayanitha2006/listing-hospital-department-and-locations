@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Hospital - Departments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #0066cc, #0099ff);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            color: #b3e0ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #b3e0ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(0, 153, 255, 0.8)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+
+        /* Departments Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0066cc;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #0099ff;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .departments-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Department Card */
+        .dept-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .dept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            background-color: #e6f2ff;
+            border-bottom: 1px solid #d1e7ff;
+        }
+
+        .dept-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #0066cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .dept-title {
+            flex-grow: 1;
+        }
+
+        .dept-title h3 {
+            color: #0066cc;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .dept-title p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .room-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .room-info:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .room-label {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .room-value {
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        .lab-facilities {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .lab-facilities h4 {
+            color: #009933;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .lab-facilities h4 i {
+            margin-right: 8px;
+        }
+
+        .lab-list {
+            list-style-type: none;
+        }
+
+        .lab-list li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #ddd;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lab-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding-right: 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #b3e0ff;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-section i {
+            margin-right: 10px;
+            color: #66b3ff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #336699;
+            font-size: 0.9rem;
+            color: #99ccff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .departments-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .departments-container {
+                grid-template-columns: 1fr;
+            }
+
+            .dept-card {
+                margin: 0 10px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .dept-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <h1>MediCare <span>Hospital</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-stethoscope"></i> Departments</a></li>
+                    <li><a href="#"><i class="fas fa-user-md"></i> Doctors</a></li>
+                    <li><a href="#"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Comprehensive Medical Care</h2>
+            <p>Providing world-class healthcare services with state-of-the-art facilities and expert medical professionals across all departments.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="section-title">Hospital Departments</h2>
+        
+        <!-- Departments Container -->
+        <div class="departments-container" id="departments-container">
+            <!-- Department cards will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Medical Street, Health City, HC 56789</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@medicarehospital.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency Services</h3>
+                    <p><i class="fas fa-ambulance"></i> 24/7 Emergency Department</p>
+                    <p><i class="fas fa-heartbeat"></i> Cardiac Emergency Unit</p>
+                    <p><i class="fas fa-first-aid"></i> Trauma Center</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 10:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Sat-Sun: 9:00 AM - 8:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Emergency: 24/7</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MediCare Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Department data
+        const departments = [
+            {
+                id: 1,
+                name: "Cardiology",
+                head: "Dr. Robert Wilson",
+                icon: "fas fa-heartbeat",
+                rooms: [
+                    { type: "Consultation", number: "101-105" },
+                    { type: "ICU", number: "ICU-1 to ICU-5" },
+                    { type: "Recovery", number: "201-210" }
+                ],
+                labFacilities: [
+                    { name: "Echo Lab", status: "Available", timing: "8AM-8PM" },
+                    { name: "ECG Room", status: "Available", timing: "24/7" },
+                    { name: "Stress Test", status: "Available", timing: "9AM-5PM" },
+                    { name: "Cath Lab", status: "Available", timing: "Emergency" }
+                ]
+            },
+            {
+                id: 2,
+                name: "Neurology",
+                head: "Dr. Sarah Johnson",
+                icon: "fas fa-brain",
+                rooms: [
+                    { type: "Consultation", number: "301-308" },
+                    { type: "Neuro ICU", number: "NICU-1 to NICU-4" },
+                    { type: "EEG Room", number: "310-312" }
+                ],
+                labFacilities: [
+                    { name: "EEG Lab", status: "Available", timing: "9AM-6PM" },
+                    { name: "EMG Lab", status: "Available", timing: "10AM-4PM" },
+                    { name: "Sleep Study", status: "Available", timing: "By Appointment" }
+                ]
+            },
+            {
+                id: 3,
+                name: "Orthopedics",
+                head: "Dr. Michael Chen",
+                icon: "fas fa-bone",
+                rooms: [
+                    { type: "Consultation", number: "401-408" },
+                    { type: "Procedure", number: "410-415" },
+                    { type: "Cast Room", number: "420-422" }
+                ],
+                labFacilities: [
+                    { name: "X-Ray Room", status: "Available", timing: "24/7" },
+                    { name: "CT Scan", status: "Available", timing: "8AM-10PM" },
+                    { name: "Physical Therapy", status: "Available", timing: "7AM-7PM" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Pediatrics",
+                head: "Dr. Lisa Martinez",
+                icon: "fas fa-baby",
+                rooms: [
+                    { type: "Consultation", number: "501-510" },
+                    { type: "Pediatric ICU", number: "PICU-1 to PICU-6" },
+                    { type: "Play Room", number: "520" }
+                ],
+                labFacilities: [
+                    { name: "Vaccination Room", status: "Available", timing: "9AM-5PM" },
+                    { name: "Growth Monitoring", status: "Available", timing: "9AM-4PM" }
+                ]
+            },
+            {
+                id: 5,
+                name: "Oncology",
+                head: "Dr. James Anderson",
+                icon: "fas fa-stethoscope",
+                rooms: [
+                    { type: "Consultation", number: "601-605" },
+                    { type: "Chemotherapy", number: "610-615" },
+                    { type: "Radiation", number: "620-622" }
+                ],
+                labFacilities: [
+                    { name: "Chemo Infusion", status: "Available", timing: "8AM-6PM" },
+                    { name: "Radiation Therapy", status: "Available", timing: "9AM-5PM" },
+                    { name: "Biopsy Room", status: "Available", timing: "By Appointment" }
+                ]
+            },
+            {
+                id: 6,
+                name: "Radiology",
+                head: "Dr. Patricia Lee",
+                icon: "fas fa-x-ray",
+                rooms: [
+                    { type: "X-Ray", number: "701-704" },
+                    { type: "MRI", number: "710-712" },
+                    { type: "Ultrasound", number: "720-725" }
+                ],
+                labFacilities: [
+                    { name: "MRI Suite", status: "Available", timing: "24/7" },
+                    { name: "CT Scanner", status: "Available", timing: "24/7" },
+                    { name: "Ultrasound", status: "Available", timing: "8AM-10PM" },
+                    { name: "Mammography", status: "Available", timing: "9AM-5PM" }
+                ]
+            },
+            {
+                id: 7,
+                name: "Emergency",
+                head: "Dr. David Brown",
+                icon: "fas fa-ambulance",
+                rooms: [
+                    { type: "Trauma Bay", number: "ER-1 to ER-5" },
+                    { type: "Observation", number: "OBS-1 to OBS-10" },
+                    { type: "Isolation", number: "ISO-1 to ISO-3" }
+                ],
+                labFacilities: [
+                    { name: "Rapid Test Lab", status: "Available", timing: "24/7" },
+                    { name: "Trauma Imaging", status: "Available", timing: "24/7" },
+                    { name: "Blood Bank", status: "Available", timing: "24/7" }
+                ]
+            },
+            {
+                id: 8,
+                name: "General Surgery",
+                head: "Dr. William Taylor",
+                icon: "fas fa-syringe",
+                rooms: [
+                    { type: "Consultation", number: "801-808" },
+                    { type: "Operation Theater", number: "OT-1 to OT-5" },
+                    { type: "Recovery", number: "810-820" }
+                ],
+                labFacilities: [
+                    { name: "Pre-Op Testing", status: "Available", timing: "7AM-7PM" },
+                    { name: "Post-Op Care", status: "Available", timing: "24/7" }
+                ]
+            }
+        ];
+
+        // Function to generate department cards
+        function generateDepartmentCards() {
+            const container = document.getElementById('departments-container');
+            
+            departments.forEach(dept => {
+                // Create card element
+                const card = document.createElement('div');
+                card.className = 'dept-card';
+                card.id = `dept-${dept.id}`;
+                
+                // Create card header with icon and title
+                const header = document.createElement('div');
+                header.className = 'card-header';
+                
+                header.innerHTML = `
+                    <div class="dept-icon">
+                        <i class="${dept.icon}"></i>
+                    </div>
+                    <div class="dept-title">
+                        <h3>${dept.name}</h3>
+                        <p>Department Head: ${dept.head}</p>
+                    </div>
+                `;
+                
+                // Create card content with room info and lab facilities
+                const content = document.createElement('div');
+                content.className = 'card-content';
+                
+                // Room information
+                let roomHTML = '';
+                dept.rooms.forEach(room => {
+                    roomHTML += `
+                        <div class="room-info">
+                            <span class="room-label">${room.type}:</span>
+                            <span class="room-value">${room.number}</span>
+                        </div>
+                    `;
+                });
+                
+                // Lab facilities
+                let labHTML = '';
+                dept.labFacilities.forEach(lab => {
+                    labHTML += `
+                        <li>
+                            <span>${lab.name}</span>
+                            <span>${lab.timing}</span>
+                        </li>
+                    `;
+                });
+                
+                content.innerHTML = `
+                    <h4>Room Allocation:</h4>
+                    ${roomHTML}
+                    <div class="lab-facilities">
+                        <h4><i class="fas fa-flask"></i> Lab Facilities</h4>
+                        <ul class="lab-list">
+                            ${labHTML}
+                        </ul>
+                    </div>
+                `;
+                
+                // Assemble the card
+                card.appendChild(header);
+                card.appendChild(content);
+                
+                // Add card to container
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize the page when loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            generateDepartmentCards();
+            
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.dept-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Add click effect to cards
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove active class from all cards
+                    cards.forEach(c => c.style.backgroundColor = 'white');
+                    
+                    // Add active class to clicked card
+                    this.style.backgroundColor = '#f0f9ff';
+                    
+                    // Get department name from the card
+                    const deptName = this.querySelector('h3').textContent;
+                    
+                    // Show a simple alert with department info
+                    const dept = departments.find(d => d.name === deptName);
+                    if (dept) {
+                        alert(`You selected ${dept.name} department.\nDepartment Head: ${dept.head}\nNumber of Lab Facilities: ${dept.labFacilities.length}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
